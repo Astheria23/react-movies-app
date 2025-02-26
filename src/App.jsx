@@ -58,7 +58,7 @@ const App = () => {
   return (
     <main>
       <div className="pattern" />
-      <div className="wrapper">
+      <div className="wrapper ">
         <header>
           <img src="./hero.png" alt="Hero Banner" />
           <h1>
@@ -66,7 +66,7 @@ const App = () => {
           </h1>
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         </header>
-        <section className="all-movies">
+        <section className="all-movies mt-24">
           <h2>All Movies</h2>
 
           {isLoading ? (
@@ -77,7 +77,6 @@ const App = () => {
             <ul>
               {movieList.map((movie) =>(
                 <p key={movie.id} className="text-white">{movie.title}</p>
-
               ))}
             </ul>
           )
