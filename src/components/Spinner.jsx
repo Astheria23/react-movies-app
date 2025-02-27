@@ -18,8 +18,8 @@ const Spinner = () => {
             cy="15"
             r="14"
             stroke="#4F46E5"
-            stroke-width="2"
-            stroke-dasharray="6 6"
+            strokeWidth="2"
+            strokeDasharray="6 6"
           />
         </svg>
       </div>
