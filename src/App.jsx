@@ -4,7 +4,6 @@ import Search from "./components/Search";
 import Spinner from "./components/Spinner";
 import MovieCard from "./components/MovieCard";
 
-
 const API_BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const API_OPTIONS = {
@@ -12,22 +11,26 @@ const API_OPTIONS = {
   headers: {
     accept: "application/json",
     Authorization: `Bearer ${API_KEY}`,
-  }}
+  },
+};
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [ErrorMessage, setErrorMessage] = useState(null);
   const [movieList, setmovieList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('')
 
+  useDebounce(() => {setDebouncedSearchTerm(searchTerm), 500,[searchTerm]})
 
-  const fetchMovies = async (query = '') => {
+  const fetchMovies = async (query = "") => {
     setIsLoading(true);
     setErrorMessage(null);
 
     try {
-      const endpoint = `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`;
+      const endpoint = query
+        ? `${API_BASE_URL}/search/movie?query=${encodeURIComponent(query)}`
+        : `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`;
       const response = await fetch(endpoint, API_OPTIONS);
       if (!response.ok) {
         throw new Error("Something went wrong while fetching the data");
@@ -41,20 +44,17 @@ const App = () => {
         return;
       }
       setmovieList(data.results || []);
-
     } catch (error) {
       console.error(`Error Fetching Movies: ${error}`);
       setErrorMessage(`error Fetching Movies: ${error}`);
-    }
-
-    finally {
+    } finally {
       setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchMovies(searchTerm);
-  }, []);
+    fetchMovies(debouncedSearchTerm);
+  }, [debouncedSearchTerm]);
 
   return (
     <main>
@@ -76,21 +76,15 @@ const App = () => {
             <p className="text-red-500">{ErrorMessage}</p>
           ) : (
             <ul>
-              {movieList.map((movie) =>(
-                <MovieCard key={movie.id} movie={movie}/>
+              {movieList.map((movie) => (
+                <MovieCard key={movie.id} movie={movie} />
               ))}
             </ul>
-          )
-          }
-
+          )}
         </section>
       </div>
     </main>
   );
-
-
-  };
-
- 
+};
 
 export default App;
