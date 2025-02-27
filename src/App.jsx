@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Search from "./components/Search";
 import Spinner from "./components/Spinner";
+import MovieCard from "./components/MovieCard";
 
 
 const API_BASE_URL = "https://api.themoviedb.org/3";
@@ -21,7 +22,7 @@ const App = () => {
   
 
 
-  const fetchMovies = async () => {
+  const fetchMovies = async (query = '') => {
     setIsLoading(true);
     setErrorMessage(null);
 
@@ -52,7 +53,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    fetchMovies();
+    fetchMovies(searchTerm);
   }, []);
 
   return (
@@ -76,7 +77,7 @@ const App = () => {
           ) : (
             <ul>
               {movieList.map((movie) =>(
-                <p key={movie.id} className="text-white">{movie.title}</p>
+                <MovieCard key={movie.id} movie={movie}/>
               ))}
             </ul>
           )
