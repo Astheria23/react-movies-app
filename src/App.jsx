@@ -5,6 +5,7 @@ import Spinner from "./components/Spinner";
 import MovieCard from "./components/MovieCard";
 import { useDebounce } from "react-use";
 import { updateSearchCount, getTrendingMovies } from "./appwrite";
+import Navbar from "./components/Navbar";
 
 const API_BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -86,7 +87,9 @@ const App = () => {
     <main>
       <div className="pattern" />
       <div className="wrapper ">
+
         <header>
+        <Navbar />
           <img src="./hero.png" alt="Hero Banner" />
           <h1>
             Find <span className="text-gradient">Movies</span> You'll Enjoy
