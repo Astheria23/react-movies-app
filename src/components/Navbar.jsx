@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import { Search, Menu, X } from "lucide-react";
+import { Search, Menu } from "lucide-react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const Navbar = () => {
-    const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
     <nav>
@@ -41,7 +41,7 @@ const Navbar = () => {
             </h1>
           </a>
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-start gap-6">
             <a
               href="/"
               className="text-gray-300 hover:text-white transition-colors"
@@ -69,45 +69,17 @@ const Navbar = () => {
           </nav>
           {/* Search and Auth Buttons */}
           <div className="flex items-center gap-3">
-            {isSearchOpen ? (
-              <div className="relative hidden md:flex items-center">
-                <input
-                  type="text"
-                  placeholder="Search movies..."
-                  className="bg-gray-900/80 border border-purple-900/30 rounded-full py-2 pl-10 pr-4 text-sm focus:outline-none focus:border-purple-500 w-64"
-                />
-                <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="absolute right-1 top-1 h-6 w-6 rounded-full"
-                  onClick={() => setIsSearchOpen(false)}
-                >
-                  <X className="h-3 w-3" />
-                </Button>
-              </div>
-            ) : (
-              <Button
-                variant="ghost"
-                size="icon"
-                className="hidden md:flex rounded-full hover:bg-gray-800"
-                onClick={() => setIsSearchOpen(true)}
-              >
-                <Search className="h-5 w-5 text-white" />
-              </Button>
-            )}
-
             <div className="hidden md:flex items-center gap-2">
               <a href="/login">
                 <Button
                   variant="outline"
-                  className="text-purple-400 border-purple-500/50 hover:bg-purple-500/10 hover:text-purple-300"
+                  className="text-purple-400 border-purple-500/50 hover:bg-purple-500/10 hover:text-purple-300 cursor-pointer"
                 >
                   Sign In
                 </Button>
               </a>
               <a href="/register">
-                <Button className="bg-purple-700 hover:bg-purple-800">
+                <Button className="bg-purple-700 hover:bg-purple-800 cursor-pointer">
                   Sign Up
                 </Button>
               </a>
@@ -117,7 +89,7 @@ const Navbar = () => {
             <Sheet>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="md:hidden">
-                  <Menu className="h-6 w-6" />
+                  <Menu className="h-6 w-6 text-white" />
                 </Button>
               </SheetTrigger>
               <SheetContent
@@ -135,30 +107,30 @@ const Navbar = () => {
                   </div>
 
                   <nav className="flex flex-col gap-4">
-                    <link
+                    <a
                       href="/"
                       className="text-gray-300 hover:text-white transition-colors py-2 border-b border-gray-800"
                     >
                       Home
-                    </link>
-                    <link
+                    </a>
+                    <a
                       href="/movies"
                       className="text-gray-300 hover:text-white transition-colors py-2 border-b border-gray-800"
                     >
                       Movies
-                    </link>
-                    <link
+                    </a>
+                    <a
                       href="/tv-shows"
                       className="text-gray-300 hover:text-white transition-colors py-2 border-b border-gray-800"
                     >
                       TV Shows
-                    </link>
-                    <link
+                    </a>
+                    <a
                       href="/watchlist"
                       className="text-gray-300 hover:text-white transition-colors py-2 border-b border-gray-800"
                     >
                       Watchlist
-                    </link>
+                    </a>
                   </nav>
 
                   <div className="flex flex-col gap-3 mt-4">

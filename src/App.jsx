@@ -84,12 +84,13 @@ const App = () => {
   }, []);
 
   return (
-    <main>
+    <main className="min-h-screen bg-gradient-to-br from-black via-gray-950 to-black">
+
       <div className="pattern" />
+      <Navbar />
       <div className="wrapper ">
 
         <header>
-        <Navbar />
           <img src="./hero.png" alt="Hero Banner" />
           <h1>
             Find <span className="text-gradient">Movies</span> You'll Enjoy
