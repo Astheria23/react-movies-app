@@ -4,7 +4,6 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
-
 @layer base {
   :root {
     --background: 240 10% 3.9%;
@@ -44,7 +43,7 @@
     @apply border-border;
   } */
   body {
-    @apply bg-background text-foreground;
+    /* @apply bg-background text-foreground; */
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }

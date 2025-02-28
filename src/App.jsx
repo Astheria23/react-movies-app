@@ -6,6 +6,7 @@ import MovieCard from "./components/MovieCard";
 import { useDebounce } from "react-use";
 import { updateSearchCount, getTrendingMovies } from "./appwrite";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const API_BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -126,6 +127,7 @@ const App = () => {
           )}
         </section>
       </div>
+      <Footer />
     </main>
   );
 };
